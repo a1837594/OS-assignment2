@@ -34,7 +34,19 @@ class LruMMU(MMU):
         # TODO: Implement the method to write memory
         self.access_memory(page_number, True)
 
-    #Method of Read and Write integrate into one function for their similarity in funcitonality
+    def get_total_disk_reads(self):
+        # TODO: Implement the method to get total disk reads
+        return self.total_disk_reads
+
+    def get_total_disk_writes(self):
+        # TODO: Implement the method to get total disk writes
+        return self.total_disk_writes
+
+    def get_total_page_faults(self):
+        # TODO: Implement the method to get total page faults
+        return self.total_page_faults
+    
+        #Method of Read and Write integrate into one function for their similarity in funcitonality
     def access_memory(self, page_number, is_write):
         #Check if the page is valid
         if page_number in self.page_table and self.page_table[page_number]['valid']:
@@ -93,15 +105,3 @@ class LruMMU(MMU):
         #Determine base on the smallest last_access_time (Earliest)
         oldest_page = min(self.frame_list, key=lambda p: self.page_table[p]['last_access_time'])
         return oldest_page
-
-    def get_total_disk_reads(self):
-        # TODO: Implement the method to get total disk reads
-        return self.total_disk_reads
-
-    def get_total_disk_writes(self):
-        # TODO: Implement the method to get total disk writes
-        return self.total_disk_writes
-
-    def get_total_page_faults(self):
-        # TODO: Implement the method to get total page faults
-        return self.total_page_faults
